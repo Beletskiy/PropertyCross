@@ -1,6 +1,4 @@
-var app = app || {};
-
-app.House = Backbone.Model.extend({
+var HouseModel = Backbone.Model.extend({
 
     defaults: {
         auction_date : null,

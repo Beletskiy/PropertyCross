@@ -2,27 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="css/main.css" type="text/css" rel="stylesheet">
+    <link href="assets/css/main.css" type="text/css" rel="stylesheet">
     <title>PropertyCross</title>
 </head>
 <body>
-<div class="wrap-page">
-    <section id="topSection">
+<div id="wrapper">
+</div>
+
+<script type="text/template" id="start-template">
+    <section id="top-section">
         <h2>PropertyCross</h2>
         <button id="faves">Faves</button>
     </section>
     <p>Use the form below to search for houses to buy.
         You can search by place-name, postcode, or click 'My location', to search in your current location.</p>
+    <input type="text" size="90" class="inputCity" autofocus="" value=' '>
+    <p>
+        <a href="#" id="go-button">Go</a>
+    </p>
+    <p id="recent-searches">Recent searches: </p>
+</script>
 
-    <form action = "index.html">
-        <input type="text" size="90" class="inputCity" autofocus="">
 
-        <p><a href="#get-запрос">
-            <button id = "goButton" type="submit" >Go</button>
-        </a></p>
-    </form>
-    <p id = "recentSearches">Recent searches: </p>
 
-</div>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/underscore/underscore.js"></script>
+<script src="bower_components/backbone/backbone.js"></script>
+<script src="bower_components/backbone-localstorage/backbone-localstorage.js"></script>
+<script src="src/models/house.model.js"></script>
+<script src="src/collections/list_of_houses.collection.js"></script>
+<script src="src/views/house_Info_briefly.view.js"></script>
+<script src="src/views/list_of_houses.view.js"></script>
+<script src="src/views/form.view.js"></script>
+<script src="src/router.js"></script>
+<script src="src/main.application.js"></script>
 </body>
 </html>

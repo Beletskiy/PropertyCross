@@ -1,8 +1,8 @@
-var app = app || {};
-app.listOfHousesView = Backbone.View.extend({
+
+var ListOfHousesView = Backbone.View.extend({
     el: '#',
     initialize: function( initialHouse ) {
-        this.collection = new app.listOfHouses( initialHouse );
+        this.collection = new ListOfHousesCollection( initialHouse );
         this.render();
     },
     render: function() {
