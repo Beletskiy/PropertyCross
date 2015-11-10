@@ -1,6 +1,6 @@
 var HouseModel = Backbone.Model.extend({
 
-    defaults: {
+    defaults: {                    //оставить только то что надо
         auction_date : null,
         bathroom_number : "",
         bedroom_number : null,

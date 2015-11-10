@@ -1,11 +1,19 @@
 var FormView = Backbone.View.extend({
-    template: _.template( $('#start-template').html() ),
 
-    initialize: function(  ) {
-        this.$elem = $('#wrapper');
-
+    el: '#wrapper',
+    template: _.template($('#start-template').html()),
+    events: {
+        'click #go-button': 'goToResultPage'
     },
-    render: function() {
-        this.$elem.html(this.template());
+
+
+    goToResultPage: function () {
+        console.log('Go to', this.$el.find('.inputCity').val());
+        //Backbone.history.navigate('search?q=London', true);
+        app.Routers.main.navigate('search?q=London', {trigger: true});
+    },
+
+    render: function () {
+        this.$el.html(this.template());
     }
 });
