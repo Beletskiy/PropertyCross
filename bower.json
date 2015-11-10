@@ -1,0 +1,22 @@
+{
+  "name": "PropertyCross",
+  "homepage": "https://github.com/Beletskiy/PropertyCross",
+  "authors": [
+    "Beletskiy <Alexey1Beletskiy@gmail.com>"
+  ],
+  "description": "Property Cross",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.2.3",
+    "jquery": "~2.1.4"
+  }
+}
