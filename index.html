@@ -9,25 +9,23 @@
 <div id="wrapper">
 </div>
 
-<script type="text/template" id="start-template">
+<script type="text/template" id="form-template">
     <section id="top-section">
         <h2>PropertyCross</h2>
         <button id="faves">Faves</button>
     </section>
     <p>Use the form below to search for houses to buy.
         You can search by place-name, postcode, or click 'My location', to search in your current location.</p>
-    <input type="text" size="90" class="inputCity" autofocus="" value=''>
+    <input type="text" size="90" id="inputCity" autofocus="" value=''>
     <p>
-        <a href="#" id="go-button">Go</a>
+        <button id="go-button">Go</button>
     </p>
     <p id="recent-searches">Recent searches: </p>
 </script>
 
 <script type="text/template" id="list-template">
-   <h1>Hello</h1>
+    <p id = "matches"> <%- amountHousesOnThePage %> of <%- amountOfAllHouses %> matches </p>
 </script>
-
-
 
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/underscore/underscore.js"></script>
