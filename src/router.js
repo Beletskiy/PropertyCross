@@ -10,7 +10,7 @@ var Router = Backbone.Router.extend({
     },
 
     searchResults: function (q) {
-        app.Views.listOfHouses.render();
+        app.Views.listOfHouses.initRender(q);
     }
 });
 
