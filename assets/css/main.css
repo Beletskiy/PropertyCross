@@ -72,3 +72,13 @@ p#recent-searches {
 .house-list {
     list-style: none;
 }
+button.more-results-hide {
+    font-size: 20px;
+    display: none;
+    margin: 0 auto;
+}
+button.more-results-show {
+    font-size: 20px;
+    display: block;
+    margin: 0 auto;
+}
