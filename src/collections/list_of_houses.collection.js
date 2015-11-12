@@ -1,6 +1,10 @@
 var ListOfHousesCollection = Backbone.Collection.extend({
-
-    url: 'http://api.nestoria.co.uk/api?pretty=1&country=uk&encoding=json&action=search_listings&listing_type=buy&place_name=london', //+city
+    url: function() {
+        var URL = 'http://api.nestoria.co.uk/api?pretty=1&country=uk&encoding=json&action=search_listings&listing_type=buy&place_name=';
+        console.log(app.Views.listOfHouses.city);
+                return URL + app.Views.listOfHouses.city;  // так можно? привязка к экземпляру
+            },
+  //  url: 'http://api.nestoria.co.uk/api?pretty=1&country=uk&encoding=json&action=search_listings&listing_type=buy&place_name=soho', //+city
     model: HouseModel,
 
     parse: function (data) {
@@ -15,7 +19,7 @@ var ListOfHousesCollection = Backbone.Collection.extend({
                 thumb_url: arrOfObj[i].thumb_url
             });
         }
-        //console.log(result);
+        console.log(result);
         return result;
     }
 });

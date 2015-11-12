@@ -60,9 +60,14 @@ p#recent-searches {
 .one-house-briefly {
     width: 100%;
     border: solid;
-}
-.one-house-briefly .house-info-cost .house-info-summary .thumb-img{
     float: left;
+}
+.one-house-briefly + p {
+    line-height: 1px;
+}
+.house-info-cost, .house-info-summary, .thumb-img{
+    float: left;
+    margin: 5px 0 5px 5px;
 }
 .house-list {
     list-style: none;

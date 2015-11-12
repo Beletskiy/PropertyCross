@@ -7,11 +7,11 @@ var ListOfHousesView = Backbone.View.extend({
         this.listenTo(app.Collections.ListOfHouses, 'reset', this.addAll);
     },
 
-    initRender: function  (urlParam) {
-        console.log(urlParam);
+    initRender: function (urlParam) {
+        this.city = urlParam;            //так можно? см.строку 5 в collections
         this.$el.html(this.template({
             amountHousesOnThePage: 0,
-            amountOfAllHouses: 0 // set spinner
+            amountOfAllHouses: 0
         }));
         $("#spinner-loader").show();
         app.Collections.ListOfHouses.fetch({
@@ -21,11 +21,10 @@ var ListOfHousesView = Backbone.View.extend({
                 this.renderError();
             }
         });
-       // console.log(app.Collections.ListOfHouses);
     },
 
-    renderError: function  () {
-          // show error
+    renderError: function () {
+        // show error
     },
 
     render: function () {
