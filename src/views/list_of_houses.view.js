@@ -45,12 +45,7 @@ var ListOfHousesView = Backbone.View.extend({
 
     addAll: function () {
         console.log("from addAll");
-    /*    var totalResults = app.Collections.ListOfHouses.models[0].attributes.total_results;
-        this.$el.html(this.template({
-            amountHousesOnThePage: 20*this.pageNumber,
-            amountOfAllHouses: totalResults
-        }));
-        $("#more-results").removeClass("more-results-hide").addClass("more-results-show"); */
+
         $('.house-list').append(app.Views.houseinfoBriefly.render());
     },
 
