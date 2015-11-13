@@ -1,6 +1,6 @@
 var HeadOfMatchesView = Backbone.View.extend({
 
-    tagName: 'p',
+/*    tagName: 'p',
     template: _.template($('#list-part0-template').html()),
     events: {
         //'click .house': 'houseView',
@@ -33,6 +33,6 @@ var HeadOfMatchesView = Backbone.View.extend({
             amountHousesOnThePage: 20*this.pageNumber,
             amountOfAllHouses: totalResults
         }));
-    }
+    } */
 
 });

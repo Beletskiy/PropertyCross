@@ -4,7 +4,7 @@ var ListOfHousesCollection = Backbone.Collection.extend({
         var URL = 'http://api.nestoria.co.uk/api?pretty=1&country=uk&encoding=json&action=search_listings&listing_type=buy';
         var page = '&page=' + app.Views.listOfHouses.pageNumber;
         var city = '&place_name=' + app.Views.listOfHouses.city;
-        console.log(page);
+        //  console.log(page);
         return URL + page + city;
     },
     //  url: 'http://api.nestoria.co.uk/api?pretty=1&country=uk&encoding=json&action=search_listings&listing_type=buy&place_name=soho', //+city
@@ -26,7 +26,7 @@ var ListOfHousesCollection = Backbone.Collection.extend({
                 thumb_url: arrOfObj[i].thumb_url
             });
         }
-        console.log(result);
+        //  console.log(result);
         return result;
     }
 });

@@ -70,7 +70,7 @@ p#recent-searches {
     margin: 5px 0 5px 5px;
 }
 .house-list {
-   /* list-style: none; */
+    /* list-style: none; */
     list-style-image:none;
     list-style-type: decimal;
 }

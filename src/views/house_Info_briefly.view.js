@@ -11,7 +11,7 @@ var HouseView = Backbone.View.extend({
 
     },
     render: function () {
-       // console.log(app.Collections.ListOfHouses.models);
+        // console.log(app.Collections.ListOfHouses.models);
         var startRenderPosition = (app.Views.listOfHouses.pageNumber - 1)*20;
 
         for (var i = 1 + startRenderPosition; i < app.Collections.ListOfHouses.models.length; i++) {

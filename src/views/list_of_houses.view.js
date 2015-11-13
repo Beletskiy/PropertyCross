@@ -7,9 +7,9 @@ var ListOfHousesView = Backbone.View.extend({
     },
 
     initialize: function () {
-        this.listenTo(app.Collections.ListOfHouses, 'reset', this.render);
+        this.listenTo(app.Collections.ListOfHouses, 'sync', this.render);
         //this.listenTo(app.Collections.ListOfHouses, 'reset', this.addAll);
-        this.listenTo(app.Collections.ListOfHouses, 'sync', this.addAll);
+      //  this.listenTo(app.Collections.ListOfHouses, 'sync', this.addAll);
     },
 
     initRender: function (urlParam) {
@@ -37,25 +37,26 @@ var ListOfHousesView = Backbone.View.extend({
         console.log('render');
         var totalResults = app.Collections.ListOfHouses.models[0].attributes.total_results;
         this.$el.html(this.template({
-            amountHousesOnThePage: 20*this.pageNumber,
+            amountHousesOnThePage: 20 * this.pageNumber,
             amountOfAllHouses: totalResults
         }));
+        $('.house-list').append(app.Views.houseinfoBriefly.render());
         $("#more-results").removeClass("more-results-hide").addClass("more-results-show");
     },
 
     addAll: function () {
         console.log("from addAll");
 
-        $('.house-list').append(app.Views.houseinfoBriefly.render());
+        this.$el.find('.house-list').append(app.Views.houseinfoBriefly.render());
     },
 
-    loadMoreResults: function() {
+    loadMoreResults: function () {
         this.pageNumber++;
         $("#more-results").removeClass("more-results-show").addClass("more-results-hide");
         $("#spinner-loader").show();
         app.Collections.ListOfHouses.fetch({
             remove: false,
-            success: function(){
+            success: function () {
                 $("#spinner-loader").hide();
                 $("#more-results").removeClass("more-results-hide").addClass("more-results-show");
             },
