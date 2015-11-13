@@ -8,11 +8,12 @@ var ListOfHousesView = Backbone.View.extend({
 
     initialize: function () {
         this.listenTo(app.Collections.ListOfHouses, 'reset', this.render);
-        this.listenTo(app.Collections.ListOfHouses, 'reset', this.addAll);
+        //this.listenTo(app.Collections.ListOfHouses, 'reset', this.addAll);
+        this.listenTo(app.Collections.ListOfHouses, 'sync', this.addAll);
     },
 
     initRender: function (urlParam) {
-        this.city = urlParam; //так можно? см.строку 5 в collections
+        this.city = urlParam;
         this.pageNumber = 1;
         this.$el.html(this.template({
             amountHousesOnThePage: 0,
@@ -22,7 +23,7 @@ var ListOfHousesView = Backbone.View.extend({
         app.Collections.ListOfHouses.fetch({
             reset: true,
             error: function (collection, response, options) {
-                console.log('error');
+                console.log('error in initRender');
                 this.renderError();
             }
         });
@@ -36,17 +37,36 @@ var ListOfHousesView = Backbone.View.extend({
         console.log('render');
         var totalResults = app.Collections.ListOfHouses.models[0].attributes.total_results;
         this.$el.html(this.template({
-            amountHousesOnThePage: 20,
+            amountHousesOnThePage: 20*this.pageNumber,
             amountOfAllHouses: totalResults
         }));
         $("#more-results").removeClass("more-results-hide").addClass("more-results-show");
     },
 
     addAll: function () {
+        console.log("from addAll");
+    /*    var totalResults = app.Collections.ListOfHouses.models[0].attributes.total_results;
+        this.$el.html(this.template({
+            amountHousesOnThePage: 20*this.pageNumber,
+            amountOfAllHouses: totalResults
+        }));
+        $("#more-results").removeClass("more-results-hide").addClass("more-results-show"); */
         $('.house-list').append(app.Views.houseinfoBriefly.render());
     },
 
     loadMoreResults: function() {
         this.pageNumber++;
+        $("#more-results").removeClass("more-results-show").addClass("more-results-hide");
+        $("#spinner-loader").show();
+        app.Collections.ListOfHouses.fetch({
+            remove: false,
+            success: function(){
+                $("#spinner-loader").hide();
+                $("#more-results").removeClass("more-results-hide").addClass("more-results-show");
+            },
+            error: function (collection, response, options) {
+                console.log('error in more results');
+            }
+        });
     }
 });
