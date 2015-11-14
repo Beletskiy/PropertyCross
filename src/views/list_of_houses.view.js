@@ -1,6 +1,7 @@
 var ListOfHousesView = Backbone.View.extend({
     el: '#wrapper',
     template: _.template($('#list-part1-template').html()),
+    templateList: _.template($('#list-part3-template').html()),
 
     events: {
         'click #more-results': 'loadMoreResults'
@@ -19,9 +20,13 @@ var ListOfHousesView = Backbone.View.extend({
             amountHousesOnThePage: 0,
             amountOfAllHouses: 0
         }));
+        this.$el.append(this.templateList({ }));
         $("#spinner-loader").show();
         app.Collections.ListOfHouses.fetch({
             reset: true,
+            success: function () {
+                $("#spinner-loader").hide();
+            },
             error: function (collection, response, options) {
                 console.log('error in initRender');
                 this.renderError();
@@ -36,10 +41,11 @@ var ListOfHousesView = Backbone.View.extend({
     render: function () {
         console.log('render');
         var totalResults = app.Collections.ListOfHouses.models[0].attributes.total_results;
-        this.$el.html(this.template({
+        this.$el.find('#matches').html(this.template({
             amountHousesOnThePage: 20 * this.pageNumber,
             amountOfAllHouses: totalResults
         }));
+        this.$el.find('#list-part3-template').html(this.templateList({ }));
         $('.house-list').append(app.Views.houseinfoBriefly.render());
         $("#more-results").removeClass("more-results-hide").addClass("more-results-show");
     },
