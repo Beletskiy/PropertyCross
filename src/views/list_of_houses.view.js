@@ -68,6 +68,6 @@ var ListOfHousesView = Backbone.View.extend({
 
     houseDetail: function (el) {
         var index = el.currentTarget.id;
-        app.Views.details.render(index);
+        app.Routers.main.navigate("house?number=" + index, {trigger: true});
     }
 });

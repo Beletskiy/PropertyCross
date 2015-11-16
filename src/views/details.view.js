@@ -1,13 +1,16 @@
+/* global Backbone,_ */
 var DetailsView = Backbone.View.extend({
 
     el: '#wrapper',
     template: _.template($('#details-template').html()),
     events: {
-        //'click .faves': 'houseView',
+        'click .faves': 'saveToFavorite'
 
     },
 
     render: function (index) {
+        'use strict';
+
         this.$el.html(this.template({
             priceFormatted: app.Collections.ListOfHouses.models[index].attributes.price_formatted,
             title: app.Collections.ListOfHouses.models[index].attributes.title,
@@ -16,5 +19,8 @@ var DetailsView = Backbone.View.extend({
             bathroomNumber : app.Collections.ListOfHouses.models[index].attributes.bathroom_number,
             summary: app.Collections.ListOfHouses.models[index].attributes.summary
         }));
+    },
+    saveToFavorite: function() {
+
     }
 });
