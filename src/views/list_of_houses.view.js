@@ -67,13 +67,7 @@ var ListOfHousesView = Backbone.View.extend({
     },
 
     houseDetail: function (el) {
-        console.log("houseDetail", el);
-
-            $(".house-list li").click(function () {
-                var index=$('.house-list li').index(this);
-                console.log(index);
-                app.Views.details.render(index-1);
-                return false;
-            });
+        var index = el.currentTarget.id;
+        app.Views.details.render(index);
     }
 });

@@ -4,6 +4,9 @@
     width: 100%;
     margin: 35px auto;
 }
+.font20 {
+    font-size: 20px;
+}
 p#matches{
     font-size: 22px;
     text-align: center;

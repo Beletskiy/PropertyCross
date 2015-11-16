@@ -11,6 +11,7 @@ var HouseView = Backbone.View.extend({
         var startRenderPosition = (app.Views.listOfHouses.pageNumber - 1) * NUMBER_OF_RESULTS;
         for (var i = 1 + startRenderPosition; i < app.Collections.ListOfHouses.models.length; i++) {
             this.$el.html(this.template({
+                id : i,
                 thumbUrl : app.Collections.ListOfHouses.models[i].attributes.thumb_url,
                 priceFormatted: app.Collections.ListOfHouses.models[i].attributes.price_formatted,
                 summary: app.Collections.ListOfHouses.models[i].attributes.summary

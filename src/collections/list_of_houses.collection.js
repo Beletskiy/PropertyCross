@@ -9,7 +9,6 @@ var ListOfHousesCollection = Backbone.Collection.extend({
     model: HouseModel,
 
     parse: function (data) {
-        console.log(data);
         var arrOfObj = data.response.listings,
             result = [];
 
@@ -22,7 +21,10 @@ var ListOfHousesCollection = Backbone.Collection.extend({
                 price_formatted: arrOfObj[i].price_formatted,
                 summary: arrOfObj[i].summary,
                 thumb_url: arrOfObj[i].thumb_url,
-
+                img_url: arrOfObj[i].img_url,
+                title: arrOfObj[i].title,
+                bedroom_number: arrOfObj[i].bedroom_number,
+                bathroom_number: arrOfObj[i].bathroom_number
             });
         }
         //  console.log(result);

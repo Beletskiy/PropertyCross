@@ -9,7 +9,6 @@ var DetailsView = Backbone.View.extend({
 
     render: function (index) {
         this.$el.html(this.template({
-
             priceFormatted: app.Collections.ListOfHouses.models[index].attributes.price_formatted,
             title: app.Collections.ListOfHouses.models[index].attributes.title,
             imgUrl : app.Collections.ListOfHouses.models[index].attributes.img_url,

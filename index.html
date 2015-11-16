@@ -37,7 +37,7 @@
 
 
 <script type="text/template" id="list-part3-template">
-    <li>
+    <li id="<%- id %>">
         <div class="one-house-briefly">
             <img class="thumb-img" src=<%- thumbUrl %> alt='house' />
             <span class="house-info-cost"><%- priceFormatted %></span>
@@ -49,14 +49,14 @@
 
 <script type="text/template" id="details-template">
     <section class="top-section">
-        <h2>PropertyCross</h2>
+        <h2>Property Details</h2>
         <button class="faves"> + </button>
     </section>
-    <p> <%- priceFormatted %> </p>
-    <p> <%- title %> </p>
+    <p class="font20"><b> <%- priceFormatted %> </b></p>
+    <p class="font20"><b> <%- title %> </b></p>
     <img class="big-img" src=<%- imgUrl %> alt='house' />
-    <span> <%- bedroomNumber %> bed, </span>
-    <span> <%- bathroomNumber %> bathroom </span>
+    <p><span> <%- bedroomNumber %> bed, </span>
+    <span> <%- bathroomNumber %> bathroom </span></p>
     <span class="house-info-summary"><%- summary %></span>
 </script>
 
