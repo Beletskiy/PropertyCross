@@ -1,3 +1,4 @@
+/*global Backbone, _, */
 var ListOfHousesView = Backbone.View.extend({
     el: '#wrapper',
     template: _.template($('#list-part1-template').html()),
@@ -39,6 +40,7 @@ var ListOfHousesView = Backbone.View.extend({
     },
 
     render: function () {
+        'use strict';
         var totalResults = app.Collections.ListOfHouses.models[0].attributes.total_results;
         this.$el.find('#matches').html(this.template({
             amountHousesOnThePage: NUMBER_OF_RESULTS * this.pageNumber,
@@ -50,6 +52,7 @@ var ListOfHousesView = Backbone.View.extend({
     },
 
     loadMoreResults: function () {
+        'use strict';
         var self = this;
         this.pageNumber++;
         this.$el.find("#more-results").removeClass("more-results-show").addClass("more-results-hide");
@@ -67,7 +70,8 @@ var ListOfHousesView = Backbone.View.extend({
     },
 
     houseDetail: function (el) {
+        'use strict';
         var index = el.currentTarget.id;
-        app.Routers.main.navigate("house?number=" + index, {trigger: true});
+        app.Routers.main.navigate('house?number=' + index, {trigger: true});
     }
 });
