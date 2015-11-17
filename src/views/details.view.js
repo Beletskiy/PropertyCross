@@ -8,7 +8,7 @@ var DetailsView = Backbone.View.extend({
         'click #remove-from-favorite': 'removeFromFavorite'
     },
 
-    render: function (index) {
+    render: function (index, collection) {
         'use strict';
         this.index = index;
 
@@ -32,27 +32,26 @@ var DetailsView = Backbone.View.extend({
     },
     removeFromFavorite: function () {
         'use strict';
+        var houseForRemove;
         this.$el.find('.faves').html(' + ').attr({
             title: 'add to favorite',
             id: 'add-to-favorite'
         });
-        console.log(app.Collections.Favorites);
-        console.log(app.Collections.ListOfHouses.models[this.index]);
-        app.Collections.Favorites.remove(app.Collections.ListOfHouses.models[this.index]);
-        console.log(app.Collections.Favorites);
+        houseForRemove = app.Collections.Favorites.findWhere
+        ({guid: app.Collections.ListOfHouses.models[this.index].attributes.guid});
+        app.Collections.Favorites.remove(houseForRemove);
     },
     isInFavorite: function (index) {
         'use strict';
-        var currentGuid = app.Collections.ListOfHouses.models[index].attributes.guid,
-            currentStorage = JSON.parse(localStorage.getItem('favorites'));
-        if (currentStorage) {
-            for (var i = 0; i < currentStorage.length; i++) {
-                if (currentStorage[i].guid === currentGuid) {
+        var currentGuid = app.Collections.ListOfHouses.models[index].attributes.guid;
+
+            for (var i = 0; i < app.Collections.Favorites.models.length; i++) {
+                if (app.Collections.Favorites.models[i].attributes.guid === currentGuid) {
                     return true;
                 }
             }
-        }
-    },
+        },
+
     changeButtonFavAttr: function () {
         'use strict';
         this.$el.find('.faves').html(' - ').attr({

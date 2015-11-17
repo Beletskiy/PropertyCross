@@ -1,30 +1,29 @@
-/* global app, Backbone */
+/* global app, Backbone, _ */
 
 var HouseView = Backbone.View.extend({
 
     tagName: 'li',
     template: _.template($('#list-part3-template').html()),
-    events: {
-        //'click .one-house-briefly': 'houseDetail'
-    },
 
-    render: function () {
+    render: function (collection, type) {
         'use strict';
-        // console.log(app.Collections.ListOfHouses.models);
-        var startRenderPosition = (app.Views.listOfHouses.pageNumber - 1) * NUMBER_OF_RESULTS;
-        for (var i = 1 + startRenderPosition; i < app.Collections.ListOfHouses.models.length; i++) {
-            this.$el.html(this.template({
-                id : i,
-                thumbUrl : app.Collections.ListOfHouses.models[i].attributes.thumb_url,
-                priceFormatted: app.Collections.ListOfHouses.models[i].attributes.price_formatted,
-                summary: app.Collections.ListOfHouses.models[i].attributes.summary
-            }));
-            $('.house-list').append(this.$el.html());
+        var startRenderPosition,
+            result = [];
+        if (type === 'faves') {
+            startRenderPosition = 0;
+        } else {
+            startRenderPosition = (app.Views.listOfHouses.pageNumber - 1) * NUMBER_OF_RESULTS;
         }
-    },
 
-    houseDetail: function () {
-        console.log("houseDetail");
+        for (var i = startRenderPosition; i < collection.models.length; i++) {
+            this.$el.html(this.template({
+                id: i,
+                thumbUrl: collection.models[i].attributes.thumb_url,
+                priceFormatted: collection.models[i].attributes.price_formatted,
+                summary: collection.models[i].attributes.summary
+            }));
+            result.push(this.$el.html());
+        }
+        return result;
     }
-
 });

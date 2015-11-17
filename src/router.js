@@ -4,7 +4,8 @@ var Router = Backbone.Router.extend({
     routes: {
         '': 'form',
         'search?q=*q': 'searchResults',
-        'house?number=*q' : 'houseDetails'
+        'house?number=*q' : 'houseDetails',
+        'faves' : 'favorite'
     },
 
     form: function () {
@@ -17,6 +18,10 @@ var Router = Backbone.Router.extend({
 
     houseDetails: function (q) {
         app.Views.details.render(q);
+    },
+
+    favorite: function() {
+        app.Views.favorite.render();
     }
 });
 

@@ -1,5 +1,6 @@
 /* global Backbone */
 var ListOfHousesCollection = Backbone.Collection.extend({
+
     url: function () {
         'use strict';
         var URL = 'http://api.nestoria.co.uk/api?pretty=1&country=uk&encoding=json&action=search_listings&listing_type=buy',
@@ -7,16 +8,23 @@ var ListOfHousesCollection = Backbone.Collection.extend({
             city = '&place_name=' + app.Views.listOfHouses.city;
         return URL + page + city;
     },
+
     model: HouseModel,
+
+    commonInfo: {
+        totalResults : 0
+    },
 
     parse: function (data) {
         'use strict';
         var arrOfObj = data.response.listings,
             result = [];
 
-        if (data.request.page === "1") {
-            result.push({total_results: data.response.total_results});
-        }
+        //if (data.request.page === "1") {
+        //    result.push({total_results: data.response.total_results});
+        //}
+
+        this.commonInfo.totalResults = data.response.total_results;
 
         for (var i = 0; i < arrOfObj.length; i++) {
             result.push({
@@ -30,7 +38,6 @@ var ListOfHousesCollection = Backbone.Collection.extend({
                 guid: arrOfObj[i].guid
             });
         }
-        //  console.log(result);
         return result;
     }
 });

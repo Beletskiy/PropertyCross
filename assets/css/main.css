@@ -22,7 +22,7 @@ section p {
     font-size: 16px;
 }
 
-h2 {
+.top-section h2 {
     text-align: center;
     float: left;
     margin-left: 200px;
@@ -78,7 +78,7 @@ p#recent-searches {
     float: left;
     margin: 5px 0 5px 5px;
 }
-.house-list {
+.house-list, .favorite-list {
     /* list-style: none; */
     list-style-image:none;
     list-style-type: decimal;
@@ -92,4 +92,7 @@ button.more-results-show {
     font-size: 20px;
     display: block;
     margin: 0 auto;
+}
+#favorite {
+    text-align: center;
 }

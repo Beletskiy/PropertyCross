@@ -10,7 +10,9 @@ var ListOfHousesView = Backbone.View.extend({
     },
 
     initialize: function () {
+        'use strict';
         this.listenTo(app.Collections.ListOfHouses, 'sync', this.render);
+        //this.collection = app.Collections.ListOfHouses; //заюзать!!!
     },
 
     initRender: function (urlParam) {
@@ -22,11 +24,11 @@ var ListOfHousesView = Backbone.View.extend({
             amountOfAllHouses: 0
         }));
         this.$el.append(this.templateList({}));
-        this.$el.find("#spinner-loader").show();
+        this.$el.find('#spinner-loader').show();
         app.Collections.ListOfHouses.fetch({
             reset: true,
             success: function () {
-                self.$el.find("#spinner-loader").hide();
+                self.$el.find('#spinner-loader').hide();
             },
             error: function (collection, response, options) {
                 console.log('error in initRender');
@@ -41,27 +43,28 @@ var ListOfHousesView = Backbone.View.extend({
 
     render: function () {
         'use strict';
-        var totalResults = app.Collections.ListOfHouses.models[0].attributes.total_results;
+       // var totalResults = app.Collections.ListOfHouses.models[0].attributes.total_results;
+        var totalResults = app.Collections.ListOfHouses.commonInfo.totalResults;
         this.$el.find('#matches').html(this.template({
             amountHousesOnThePage: NUMBER_OF_RESULTS * this.pageNumber,
             amountOfAllHouses: totalResults
         }));
         this.$el.find('#list-part2-template').html(this.templateList({}));
-        this.$el.find('.house-list').append(app.Views.houseinfoBriefly.render());
-        this.$el.find("#more-results").removeClass("more-results-hide").addClass("more-results-show");
+        this.$el.find('.house-list').append(app.Views.houseinfoBriefly.render(app.Collections.ListOfHouses));
+        this.$el.find('#more-results').removeClass('more-results-hide').addClass('more-results-show');
     },
 
     loadMoreResults: function () {
         'use strict';
         var self = this;
         this.pageNumber++;
-        this.$el.find("#more-results").removeClass("more-results-show").addClass("more-results-hide");
-        this.$el.find("#spinner-loader").show();
+        this.$el.find('#more-results').removeClass('more-results-show').addClass('more-results-hide');
+        this.$el.find('#spinner-loader').show();
         app.Collections.ListOfHouses.fetch({
             remove: false,
             success: function () {
-                self.$el.find("#spinner-loader").hide();
-                self.$el.find("#more-results").removeClass("more-results-hide").addClass("more-results-show");
+                self.$el.find('#spinner-loader').hide();
+                self.$el.find('#more-results').removeClass('more-results-hide').addClass('more-results-show');
             },
             error: function (collection, response, options) {
                 console.log('error in more results');
