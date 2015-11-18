@@ -19,10 +19,9 @@ var ListOfHousesCollection = Backbone.Collection.extend({
         'use strict';
         var arrOfObj = data.response.listings,
             result = [];
-
-        //if (data.request.page === "1") {
-        //    result.push({total_results: data.response.total_results});
-        //}
+        if (!arrOfObj) {
+            return false;
+        }
 
         this.commonInfo.totalResults = data.response.total_results;
 

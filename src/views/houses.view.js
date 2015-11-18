@@ -12,7 +12,6 @@ var ListOfHousesView = Backbone.View.extend({
     initialize: function () {
         'use strict';
         this.listenTo(app.Collections.ListOfHouses, 'sync', this.render);
-        //this.collection = app.Collections.ListOfHouses; //заюзать!!!
     },
 
     initRender: function (urlParam) {
@@ -43,7 +42,6 @@ var ListOfHousesView = Backbone.View.extend({
 
     render: function () {
         'use strict';
-       // var totalResults = app.Collections.ListOfHouses.models[0].attributes.total_results;
         var totalResults = app.Collections.ListOfHouses.commonInfo.totalResults;
         this.$el.find('#matches').html(this.template({
             amountHousesOnThePage: NUMBER_OF_RESULTS * this.pageNumber,

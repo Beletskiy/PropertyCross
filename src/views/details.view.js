@@ -11,17 +11,20 @@ var DetailsView = Backbone.View.extend({
     render: function (index, collection) {
         'use strict';
         this.index = index;
-
-        this.$el.html(this.template({
-            priceFormatted: collection.models[index].attributes.price_formatted,
-            title: collection.models[index].attributes.title,
-            imgUrl: collection.models[index].attributes.img_url,
-            bedroomNumber: collection.models[index].attributes.bedroom_number,
-            bathroomNumber: collection.models[index].attributes.bathroom_number,
-            summary: collection.models[index].attributes.summary
-        }));
-        if (this.isInFavorite(index, collection)) {
-            this.changeButtonFavAttr();
+        if (collection.models.length > 0) {
+            this.$el.html(this.template({
+                priceFormatted: collection.models[index].attributes.price_formatted,
+                title: collection.models[index].attributes.title,
+                imgUrl: collection.models[index].attributes.img_url,
+                bedroomNumber: collection.models[index].attributes.bedroom_number,
+                bathroomNumber: collection.models[index].attributes.bathroom_number,
+                summary: collection.models[index].attributes.summary
+            }));
+            if (this.isInFavorite(index, collection)) {
+                this.changeButtonFavAttr();
+            }
+        } else {
+            this.$el.append("<h2>Can't found information. Back to the previous page</h2>");
         }
     },
     saveToFavorite: function () {
@@ -52,14 +55,14 @@ var DetailsView = Backbone.View.extend({
         'use strict';
         var currentGuid = collection.models[index].attributes.guid;
 
-            for (var i = 0; i < app.Collections.Favorites.models.length; i++) {
-                if (app.Collections.Favorites.models[i].attributes.guid === currentGuid) {
-                    return true;
-                }
+        for (var i = 0; i < app.Collections.Favorites.models.length; i++) {
+            if (app.Collections.Favorites.models[i].attributes.guid === currentGuid) {
+                return true;
             }
-        },
+        }
+    },
 
-    isFavoritePage: function(hash) {
+    isFavoritePage: function (hash) {
         'use strict';
         return (hash.indexOf('faves') + 1);
     },
