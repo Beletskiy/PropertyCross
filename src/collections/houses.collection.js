@@ -12,29 +12,38 @@ var ListOfHousesCollection = Backbone.Collection.extend({
     model: HouseModel,
 
     commonInfo: {
-        totalResults : 0
+        totalResults: 0
     },
 
     parse: function (data) {
         'use strict';
-        var arrOfObj = data.response.listings,
+
+        var listings, result;
+
+        if (data.response.hasOwnProperty('listings') && Array.isArray(data.response.listings)) {
+            listings = data.response.listings;
             result = [];
-        if (!arrOfObj) {
-            return false;
+        } else {
+            listings = [];
+            result = [];
         }
 
-        this.commonInfo.totalResults = data.response.total_results;
+        if (data.response.hasOwnProperty('total_results') && typeof data.response.total_results === 'number') {
+            this.commonInfo.totalResults = data.response.total_results;
+        } else {
+            this.commonInfo.totalResults = 0;
+        }
 
-        for (var i = 0; i < arrOfObj.length; i++) {
+        for (var i = 0; i < listings.length; i++) {
             result.push({
-                price_formatted: arrOfObj[i].price_formatted,
-                summary: arrOfObj[i].summary,
-                thumb_url: arrOfObj[i].thumb_url,
-                img_url: arrOfObj[i].img_url,
-                title: arrOfObj[i].title,
-                bedroom_number: arrOfObj[i].bedroom_number,
-                bathroom_number: arrOfObj[i].bathroom_number,
-                guid: arrOfObj[i].guid
+                price_formatted: listings[i].price_formatted,
+                summary: listings[i].summary,
+                thumb_url: listings[i].thumb_url,
+                img_url: listings[i].img_url,
+                title: listings[i].title,
+                bedroom_number: listings[i].bedroom_number,
+                bathroom_number: listings[i].bathroom_number,
+                guid: listings[i].guid
             });
         }
         return result;
