@@ -10,11 +10,16 @@ var FavoriteListView = Backbone.View.extend({
     render: function () {
         'use strict';
         var messageAboutNoFavorites = 'You have not added any properties to your favourites';
-        this.$el.html(this.template({}));
         if (app.Collections.Favorites.models.length > 0) {
-            this.$el.find('.favorite-list').append(app.Views.houseinfoBriefly.render(app.Collections.Favorites, 'faves'));
+            this.$el.html(this.template({
+                houses: app.Collections.Favorites.models,
+                message: ''
+            }));
         } else {
-            this.$el.append(messageAboutNoFavorites);
+            this.$el.html(this.template({
+                houses: app.Collections.Favorites.models,
+                message: messageAboutNoFavorites
+            }));
         }
     },
     houseDetail: function (el) {

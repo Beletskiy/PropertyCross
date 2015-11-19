@@ -81,8 +81,22 @@
 
 <script type="text/template" id="favorite-template">
     <h2 id='favorite'>Favorite</h2>
-    <ul class="favorite-list"></ul>
+
+    <ul class="favorite-list">
+        <% _.each(houses, function(houses,index) { %>
+        <li id="<%- index %> ">
+            <div class="one-house-briefly">
+                <img class="thumb-img" src=<%- houses.attributes.thumb_url %> alt='house' />
+                <span class="house-info-cost"><%- houses.attributes.price_formatted %></span>
+                <span class="house-info-summary"><%- houses.attributes.summary %></span>
+            </div>
+            <p>&nbsp;</p>
+        </li>
+        <% }); %>
+    </ul>
+    <h2><%- message %></h2>
 </script>
+
 
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/underscore/underscore.js"></script>
@@ -93,7 +107,6 @@
 <script src="src/collections/favorites.collection.js"></script>
 <script src="src/views/favorites.view.js"></script>
 <script src="src/views/details.view.js"></script>
-<script src="src/views/house_Info_briefly.view.js"></script>
 <script src="src/views/houses.view.js"></script>
 <script src="src/views/form.view.js"></script>
 <script src="src/router.js"></script>
