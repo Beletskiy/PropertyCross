@@ -1,20 +1,21 @@
 #wrapper {
+    padding: 0 15px;
     background: #fff;
     max-width: 600px;
     width: 100%;
     margin: 35px auto;
 }
-.font20 {
-    font-size: 20px!important;
-}
+
 #wrapper input {
     height: 40px;
 }
+
 p#matches{
     font-size: 22px;
     text-align: center;
     color: darkolivegreen;
 }
+
 section.top-section {
     width: 100%;
     height: 80px;
@@ -36,6 +37,7 @@ button.faves {
     float: right;
     /*margin-top: 25px; */
 }
+
 input + p {
     margin-top: 20px;
 }
@@ -79,23 +81,22 @@ p#recent-searches {
     line-height: 1px;
 }
 .house-info-cost, .house-info-summary, .thumb-img{
-    float: left;
     margin: 5px 0 5px 5px;
 }
 .house-list, .favorite-list {
-    /* list-style: none; */
-    list-style-image:none;
-    list-style-type: decimal;
+    list-style: none;
+    list-style-image: none;
+    padding: 0;
 }
-button.more-results-hide {
+/*button.more-results-hide {
     font-size: 20px;
     display: none;
     margin: 0 auto;
-}
+} */
 button.more-results-show {
     font-size: 20px;
-    display: block;
-    margin: 0 auto;
+    display: block!important;
+    margin: 0 auto!important;
 }
 #favorite {
     text-align: center;
