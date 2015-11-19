@@ -5,7 +5,6 @@ var FormView = Backbone.View.extend({
     template: _.template($('#form-template').html()),
     events: {
         'click #go-button': 'goToResultPage',
-        //'keypress enter' : 'goToResultPage',
         'click #faves': 'goToFavesPage'
     },
 

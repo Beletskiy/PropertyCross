@@ -58,7 +58,7 @@
 <script type="text/template" id="one-house-template">
     <li id="<%- id %>">
         <div class="one-house-briefly">
-            <img class="thumb-img" src=<%- thumbUrl %> alt='house' />
+            <img class="thumb-img" src=<%-thumbUrl%> alt='house' />
             <span class="house-info-cost"><%- priceFormatted %></span>
             <span class="house-info-summary"><%- summary %></span>
         </div>
@@ -86,7 +86,7 @@
         <% _.each(houses, function(houses,index) { %>
         <li id="<%- index %> ">
             <div class="one-house-briefly">
-                <img class="thumb-img" src=<%- houses.attributes.thumb_url %> alt='house' />
+                <img class="thumb-img" src=<%-houses.attributes.thumb_url%> alt='house' />
                 <span class="house-info-cost"><%- houses.attributes.price_formatted %></span>
                 <span class="house-info-summary"><%- houses.attributes.summary %></span>
             </div>
@@ -96,7 +96,6 @@
     </ul>
     <h2><%- message %></h2>
 </script>
-
 
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/underscore/underscore.js"></script>

@@ -39,19 +39,13 @@ var ListOfHousesView = Backbone.View.extend({
                     message: 'Where was a problem with your search'
                 }));
                 console.log('error in initRender');
-                console.log(response);
             }
         });
         this.render();
     },
 
-    renderError: function () {
-        // show error
-    },
-
     render: function () {
         'use strict';
-        // console.log(app.Collections.ListOfHouses.models);
         var totalResults = app.Collections.ListOfHouses.commonInfo.totalResults;
         this.$el.html(this.template({
             amountHousesOnThePage: NUMBER_OF_RESULTS * this.pageNumber,

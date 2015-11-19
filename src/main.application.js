@@ -13,7 +13,6 @@ app.Collections.ListOfHouses = new ListOfHousesCollection();
 app.Collections.Favorites = new FavoritesCollection();
 app.Views.favorite = new FavoriteListView();
 app.Views.details = new DetailsView();
-//app.Views.houseinfoBriefly = new HouseView();
 app.Views.listOfHouses = new ListOfHousesView();
 app.Views.form = new FormView();
 app.Routers.main = new Router();
