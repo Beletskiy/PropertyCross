@@ -3,24 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <link href="assets/css/main.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="bower_components/semantic/dist/semantic.min.css">
     <title>PropertyCross</title>
 </head>
 <body>
 
-<div id="wrapper">
-
-</div>
+<div id="wrapper"></div>
 
 <script type="text/template" id="form-template">
-    <section class="top-section">
+    <section class="top-section font20">
         <h2>PropertyCross</h2>
-        <button class="faves" id="faves">Faves</button>
+        <button class="faves ui button" id="faves">Faves</button>
     </section>
     <p>Use the form below to search for houses to buy.
         You can search by place-name, postcode, or click 'My location', to search in your current location.</p>
-    <input type="text" size="90" id="inputCity" autofocus="" value=''>
+    <input type="text" class="font20" size="60" id="inputCity" autofocus="" value=''>
     <p>
-        <button id="go-button">Go</button>
+        <button class="ui button" id="go-button">Go</button>
     </p>
     <p id="recent-searches">Recent searches: </p>
 </script>
@@ -53,17 +52,6 @@
     <button id="more-results" class="more-results-show">More results</button>
     <% } %>
 
-</script>
-
-<script type="text/template" id="one-house-template">
-    <li id="<%- id %>">
-        <div class="one-house-briefly">
-            <img class="thumb-img" src=<%-thumbUrl%> alt='house' />
-            <span class="house-info-cost"><%- priceFormatted %></span>
-            <span class="house-info-summary"><%- summary %></span>
-        </div>
-        <p>&nbsp;</p>
-    </li>
 </script>
 
 <script type="text/template" id="details-template">

@@ -18,6 +18,7 @@
   "dependencies": {
     "backbone": "~1.2.3",
     "jquery": "~2.1.4",
-    "backbone-localstorage": "~0.3.2"
+    "backbone-localstorage": "~0.3.2",
+    "semantic": "~2.1.6"
   }
 }

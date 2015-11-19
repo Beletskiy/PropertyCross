@@ -5,20 +5,23 @@
     margin: 35px auto;
 }
 .font20 {
-    font-size: 20px;
+    font-size: 20px!important;
+}
+#wrapper input {
+    height: 40px;
 }
 p#matches{
     font-size: 22px;
     text-align: center;
+    color: darkolivegreen;
 }
 section.top-section {
     width: 100%;
     height: 80px;
     margin: 0 auto;
-    font-size: 20px;
 }
 
-section p {
+section + p {
     font-size: 16px;
 }
 
@@ -26,16 +29,17 @@ section p {
     text-align: center;
     float: left;
     margin-left: 200px;
+    color: darkolivegreen;
 }
 
 button.faves {
     float: right;
-    font-size: 20px;
-    margin-top: 25px;
+    /*margin-top: 25px; */
 }
-button#go-button {
-    font-size: 20px;
+input + p {
+    margin-top: 20px;
 }
+
 p#recent-searches {
     font-size: 18px;
 }
@@ -95,4 +99,5 @@ button.more-results-show {
 }
 #favorite {
     text-align: center;
+    color: darkolivegreen;
 }
