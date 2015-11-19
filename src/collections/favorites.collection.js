@@ -8,7 +8,6 @@ var FavoritesCollection = Backbone.Collection.extend({
         var favorites = JSON.parse(localStorage.getItem('favorites'));
         this.add(favorites);
         this.on('add remove', function () {
-            //console.log(JSON.stringify(this));
             localStorage.setItem('favorites', JSON.stringify(this));
         });
     }

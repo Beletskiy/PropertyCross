@@ -17,15 +17,13 @@ var ListOfHousesCollection = Backbone.Collection.extend({
 
     parse: function (data) {
         'use strict';
-        console.log(data.response.total_results, " from parse");
-        var listings, result;
+        var listings,
+            result = [];
 
         if (data.response.hasOwnProperty('listings') && Array.isArray(data.response.listings)) {
             listings = data.response.listings;
-            result = [];
         } else {
             listings = [];
-            result = [];
         }
 
         if (data.response.hasOwnProperty('total_results') && typeof data.response.total_results === 'number') {

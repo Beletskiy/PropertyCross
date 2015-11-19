@@ -28,8 +28,8 @@
 <script type="text/template" id="houses-template">
     <p id="matches"> <%- amountHousesOnThePage %> of <%- amountOfAllHouses %> matches </p>
 
-    <% if (amountOfAllHouses === 0) { %>
-    <h2>Where was a problem with your search</h2>
+    <% if ((amountOfAllHouses === 0) && (showResult)) { %>
+    <h2><%- message %></h2>
 
     <% } else { %>
 
@@ -46,8 +46,13 @@
         <% }); %>
     </ul>
     <% } %>
+
+    <% if (flag) { %>
     <div id="spinner-loader"></div>
-    <button id="more-results" class="more-results-hide">More results</button>
+    <% } else if (houses.length > 0) { %>
+    <button id="more-results" class="more-results-show">More results</button>
+    <% } %>
+
 </script>
 
 <script type="text/template" id="one-house-template">

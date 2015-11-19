@@ -9377,7 +9377,7 @@ jQuery.fn.extend({
 				timers = jQuery.timers,
 				length = queue ? queue.length : 0;
 
-			// enable finishing flag on private data
+			// enable finishing showSpinner on private data
 			data.finish = true;
 
 			// empty the queue first
@@ -9402,7 +9402,7 @@ jQuery.fn.extend({
 				}
 			}
 
-			// turn off finishing flag
+			// turn off finishing showSpinner
 			delete data.finish;
 		});
 	}

@@ -15,17 +15,33 @@ var ListOfHousesView = Backbone.View.extend({
 
     initRender: function (urlParam) {
         'use strict';
+        var self = this;
         this.pageNumber = 1;
         this.city = urlParam;
+        this.showSpinner = true;
+        this.showResult = false;
         app.Collections.ListOfHouses.fetch({
-                 reset: true,
-                 success: function () {
-                     console.log('success initRender');//todo set flag to collection for show spinner
-                 },
-                 error: function (collection, response, options) {
-                     console.log('error in initRender');
-                 }
-             });
+            reset: true,
+            success: function () {
+                console.log('success initRender');
+                self.showSpinner = false;
+                self.showResult = true;
+            },
+            error: function (collection, response, options) {
+                self.showSpinner = false;
+                self.showResult = true;
+                self.$el.html(self.template({
+                    amountHousesOnThePage: 0,
+                    amountOfAllHouses: 0,
+                    houses: app.Collections.ListOfHouses.models,
+                    flag: self.showSpinner,
+                    showResult: self.showResult,
+                    message: 'Where was a problem with your search'
+                }));
+                console.log('error in initRender');
+                console.log(response);
+            }
+        });
         this.render();
     },
 
@@ -35,28 +51,27 @@ var ListOfHousesView = Backbone.View.extend({
 
     render: function () {
         'use strict';
-       // console.log(app.Collections.ListOfHouses.models);
+        // console.log(app.Collections.ListOfHouses.models);
         var totalResults = app.Collections.ListOfHouses.commonInfo.totalResults;
         this.$el.html(this.template({
             amountHousesOnThePage: NUMBER_OF_RESULTS * this.pageNumber,
             amountOfAllHouses: totalResults,
-            houses: app.Collections.ListOfHouses.models
+            houses: app.Collections.ListOfHouses.models,
+            flag: this.showSpinner,
+            showResult: this.showResult,
+            message: 'There were no properties found for the given location'
         }));
-        this.$el.find('#spinner-loader').hide();
-        this.$el.find('#more-results').removeClass('more-results-hide').addClass('more-results-show');
     },
 
     loadMoreResults: function () {
         'use strict';
         var self = this;
         this.pageNumber++;
-        this.$el.find('#more-results').removeClass('more-results-show').addClass('more-results-hide');
-        this.$el.find('#spinner-loader').show();
+        this.showSpinner = true;
         app.Collections.ListOfHouses.fetch({
             remove: false,
             success: function () {
-                self.$el.find('#spinner-loader').hide();
-                self.$el.find('#more-results').removeClass('more-results-hide').addClass('more-results-show');
+                self.showSpinner = false;
             },
             error: function (collection, response, options) {
                 console.log('error in more results');
