@@ -14,7 +14,7 @@
 <script type="text/template" id="form-template">
     <section class="top-section">
         <h2>PropertyCross</h2>
-        <button class="faves" id = "faves">Faves</button>
+        <button class="faves" id="faves">Faves</button>
     </section>
     <p>Use the form below to search for houses to buy.
         You can search by place-name, postcode, or click 'My location', to search in your current location.</p>
@@ -25,25 +25,32 @@
     <p id="recent-searches">Recent searches: </p>
 </script>
 
-<script type="text/template" id="list-part1-template">
+<script type="text/template" id="houses-template">
     <p id="matches"> <%- amountHousesOnThePage %> of <%- amountOfAllHouses %> matches </p>
-</script>
 
-<script type="text/template" id="list-part2-template">
-    <% if (amountOfAllHouses !== 0) { %>
-    <h2>Empty</h2>
+    <% if (amountOfAllHouses === 0) { %>
+    <h2>Where was a problem with your search</h2>
+
     <% } else { %>
-    <ul class="house-list"></ul>
+
+    <ul class="house-list">
+        <% _.each(houses, function(houses,index) { %>
+        <li id="<%- index %>">
+            <div class="one-house-briefly">
+                <img class="thumb-img" src=<%- houses.attributes.thumb_url %> alt='house' />
+                <span class="house-info-cost"><%- houses.attributes.price_formatted %></span>
+                <span class="house-info-summary"><%- houses.attributes.summary %></span>
+            </div>
+            <p>&nbsp;</p>
+        </li>
+        <% }); %>
+    </ul>
+    <% } %>
     <div id="spinner-loader"></div>
     <button id="more-results" class="more-results-hide">More results</button>
-    <% } %>
 </script>
 
-<!--<% if (completed) { %>
-    <button id="clear-completed">Clear completed (<%= completed %>)</button>
-    <% } %> -->
-
-<script type="text/template" id="list-part3-template">
+<script type="text/template" id="one-house-template">
     <li id="<%- id %>">
         <div class="one-house-briefly">
             <img class="thumb-img" src=<%- thumbUrl %> alt='house' />
@@ -57,18 +64,18 @@
 <script type="text/template" id="details-template">
     <section class="top-section">
         <h2>Property Details</h2>
-        <button class="faves" id = "add-to-favorite" title="Add to favorite"> + </button>
+        <button class="faves" id="add-to-favorite" title="Add to favorite"> +</button>
     </section>
     <p class="font20"><b> <%- priceFormatted %> </b></p>
     <p class="font20"><b> <%- title %> </b></p>
     <img class="big-img" src=<%- imgUrl %> alt='house' />
     <p><span> <%- bedroomNumber %> bed, </span>
-    <span> <%- bathroomNumber %> bathroom </span></p>
+        <span> <%- bathroomNumber %> bathroom </span></p>
     <span class="house-info-summary"><%- summary %></span>
 </script>
 
 <script type="text/template" id="favorite-template">
-        <h2 id = 'favorite'>Favorite</h2>
+    <h2 id='favorite'>Favorite</h2>
     <ul class="favorite-list"></ul>
 </script>
 

@@ -3,7 +3,7 @@
 var HouseView = Backbone.View.extend({
 
     tagName: 'li',
-    template: _.template($('#list-part3-template').html()),
+    template: _.template($('#one-house-template').html()),
 
     render: function (collection, type) {
         'use strict';

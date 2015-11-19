@@ -1,8 +1,7 @@
 /*global Backbone, _, */
 var ListOfHousesView = Backbone.View.extend({
     el: '#wrapper',
-    template: _.template($('#list-part1-template').html()),
-    templateList: _.template($('#list-part2-template').html()),
+    template: _.template($('#houses-template').html()),
 
     events: {
         'click #more-results': 'loadMoreResults',
@@ -15,27 +14,19 @@ var ListOfHousesView = Backbone.View.extend({
     },
 
     initRender: function (urlParam) {
-        var self = this;
-        this.city = urlParam;
+        'use strict';
         this.pageNumber = 1;
-        this.$el.html(this.template({
-            amountHousesOnThePage: 0,
-            amountOfAllHouses: 0
-        }));
-        this.$el.append(this.templateList({amountOfAllHouses: 0}));
-        this.$el.find('#spinner-loader').show();
+        this.city = urlParam;
         app.Collections.ListOfHouses.fetch({
-            reset: true,
-            success: function () {
-
-                console.log('success initRender');
-                self.$el.find('#spinner-loader').hide();
-            },
-            error: function (collection, response, options) {
-                console.log('error in initRender');
-                this.renderError();
-            }
-        });
+                 reset: true,
+                 success: function () {
+                     console.log('success initRender');//todo set flag to collection for show spinner
+                 },
+                 error: function (collection, response, options) {
+                     console.log('error in initRender');
+                 }
+             });
+        this.render();
     },
 
     renderError: function () {
@@ -44,14 +35,14 @@ var ListOfHousesView = Backbone.View.extend({
 
     render: function () {
         'use strict';
-        console.log('render houses view');
+       // console.log(app.Collections.ListOfHouses.models);
         var totalResults = app.Collections.ListOfHouses.commonInfo.totalResults;
-        this.$el.find('#matches').html(this.template({
+        this.$el.html(this.template({
             amountHousesOnThePage: NUMBER_OF_RESULTS * this.pageNumber,
-            amountOfAllHouses: totalResults
+            amountOfAllHouses: totalResults,
+            houses: app.Collections.ListOfHouses.models
         }));
-        this.$el.find('#list-part2-template').html(this.templateList({amountOfAllHouses: totalResults}));
-        this.$el.find('.house-list').append(app.Views.houseinfoBriefly.render(app.Collections.ListOfHouses));
+        this.$el.find('#spinner-loader').hide();
         this.$el.find('#more-results').removeClass('more-results-hide').addClass('more-results-show');
     },
 
