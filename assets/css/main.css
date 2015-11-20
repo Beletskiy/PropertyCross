@@ -89,14 +89,13 @@ p#recent-searches {
 
 .house-list, .favorite-list {
     list-style: none;
-    list-style-image: none;
     padding: 0;
 }
 
 button.more-results-show {
     font-size: 20px;
-    display: block !important;
-    margin: 0 auto !important;
+    display: block;
+    margin: 0 auto;
 }
 
 #favorite {
