@@ -5,7 +5,8 @@ var ListOfHousesView = Backbone.View.extend({
 
     events: {
         'click #more-results': 'loadMoreResults',
-        'click .house-list li': 'houseDetail'
+        'click .house-list li': 'houseDetail',
+        'click .arrow': 'backToThePreviousPage'
     },
 
     initialize: function () {
@@ -77,5 +78,10 @@ var ListOfHousesView = Backbone.View.extend({
         'use strict';
         var index = el.currentTarget.id;
         app.Routers.main.navigate('house?number=' + index, {trigger: true});
+    },
+
+    backToThePreviousPage: function () {
+        'use strict';
+        window.history.back();
     }
 });
