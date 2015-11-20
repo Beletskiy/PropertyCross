@@ -92,7 +92,7 @@ p#recent-searches {
     padding: 0;
 }
 
-button.more-results-show {
+#more-results {
     font-size: 20px;
     display: block;
     margin: 0 auto;
