@@ -68,14 +68,8 @@ p#recent-searches {
 
 .one-house-briefly {
     width: 100%;
-    border: solid;
-    float: left;
-}
-
-.one-house-briefly:hover {
-    width: 100%;
-    border: solid red;
-    cursor: pointer;
+    border: 1px solid gray;
+    border-radius: 2px;
     float: left;
 }
 
@@ -84,6 +78,7 @@ p#recent-searches {
 }
 
 .house-info-cost, .house-info-summary, .thumb-img {
+    float: left;
     margin: 5px 0 5px 5px;
 }
 
