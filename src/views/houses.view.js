@@ -24,7 +24,7 @@ var ListOfHousesView = Backbone.View.extend({
         app.Collections.ListOfHouses.fetch({
             reset: true,
             success: function () {
-                console.log('success initRender');
+                //console.log('success initRender');
                 self.showSpinner = false;
                 self.showResult = true;
             },
